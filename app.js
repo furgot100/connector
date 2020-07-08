@@ -4,22 +4,33 @@ const app = express()
 
 // require handlebars
 const exphbs = require('express-handlebars');
+// INITIALIZE BODY-PARSER AND ADD IT TO APP
+const bodyParser = require('body-parser');
 
 // Use "main" as our default layout
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 // Use handlebars to render
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 var events = [
-    { title: "I am your first event", desc: "A great event that is super fun to look at and good", imgUrl: "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4OC85MTEvb3JpZ2luYWwvZ29sZGVuLXJldHJpZXZlci1wdXBweS5qcGVn" },
-    { title: "I am your second event", desc: "A great event that is super fun to look at and good", imgUrl: "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4OC85MTEvb3JpZ2luYWwvZ29sZGVuLXJldHJpZXZlci1wdXBweS5qcGVn" },
-    { title: "I am your third event", desc: "A great event that is super fun to look at and good", imgUrl: "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4OC85MTEvb3JpZ2luYWwvZ29sZGVuLXJldHJpZXZlci1wdXBweS5qcGVn" }
+    { title: "I am your first event", desc: "A great event that is super fun to look at and good"},
+    { title: "I am your second event", desc: "A great event that is super fun to look at and good"},
+    { title: "I am your third event", desc: "A great event that is super fun to look at and good"}
 ]
 
 // INDEX
 app.get('/', (req, res) => {
     res.render('home', { events: events });
-  })
+})
+
+// NEW
+app.get('/lobby/new', (req, res) => {
+    res.render('lobby-new', {});
+})
+
 
 // Choose a port to listen on
 const port = process.env.PORT || 3000;
