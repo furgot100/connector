@@ -1,20 +1,5 @@
 <form method="POST" action="/lobby">
-  <fieldset>
-    <legend>New Lobby</legend>
-    <!-- TITLE -->
-    <p>
-      <label for="title">Title</label><br>
-      <input type="text" name="title" />
-    </p>
-    <p>
-      <label for="desc">Description</label><br>
-      <input type="text" name="desc" />
-    </p>
-    <p>
-        <label for="link">Link to Zoom or Discord</label><br>
-        <input type="text" placeholder="" name="link" />
-    </p>
-  </fieldset>
+  {{> lobby-form }}
 
   <!-- BUTTON -->
   <p>

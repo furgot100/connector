@@ -1,6 +1,8 @@
 // Initialize express
 const express = require('express')
+const methodOverride = require('method-override')
 const app = express()
+
 
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
@@ -21,12 +23,9 @@ app.set('view engine', 'handlebars');
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 const models = require('./db/models');
+// override with POST having ?_method=DELETE or ?_method=PUT
+app.use(methodOverride('_method'))
 
-var lobbys = [
-    { title: "I am your first event", desc: "A great event that is super fun to look at and good"},
-    { title: "I am your second event", desc: "A great event that is super fun to look at and good"},
-    { title: "I am your third event", desc: "A great event that is super fun to look at and good"}
-]
 
 // INDEX
 app.get('/', (req, res) => {
@@ -58,8 +57,29 @@ app.get('/lobby/:id', (req, res) => {
       // if they id was for an event not in our db, log an error
       console.log(err.message);
     })
-  })
+})
 
+// EDIT
+app.get('/lobby/:id/edit', (req, res) => {
+    models.Lobby.findByPk(req.params.id).then((lobby) => {
+      res.render('lobby-edit', { lobby: lobby });
+    }).catch((err) => {
+      console.log(err.message);
+    })
+});
+
+// UPDATE
+app.put('/lobby/:id', (req, res) => {
+    models.Lobby.findByPk(req.params.id).then(lobby => {
+      lobby.update(req.body).then(lobby => {
+        res.redirect(`/lobby/${req.params.id}`);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+});
 
 
 
