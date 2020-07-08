@@ -30,7 +30,7 @@ var lobbys = [
 
 // INDEX
 app.get('/', (req, res) => {
-    models.Lobby.findAll().then(lobbys => {
+    models.Lobby.findAll({ order: [['createdAt', 'DESC']] }).then(lobbys => {
       res.render('home', { lobbys: lobbys });
     })
   })

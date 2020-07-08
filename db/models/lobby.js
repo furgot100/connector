@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   Lobby.init({
     title: DataTypes.STRING,
-    desc: DataTypes.TEXT
+    desc: DataTypes.TEXT,
+    link: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Lobby',
