@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 // CREATE
 app.post('/lobby', (req, res) => {
     models.Lobby.create(req.body).then(lobby => {
-      res.redirect(`/`);
+      res.redirect(`/lobby/${lobby.id}`);
     }).catch((err) => {
       console.log(err)
     });
@@ -48,6 +48,20 @@ app.post('/lobby', (req, res) => {
 app.get('/lobby/new', (req, res) => {
     res.render('lobby-new', {});
 })
+
+app.get('/lobby/:id', (req, res) => {
+    // Search for the event by its id that was passed in via req.params
+    models.Lobby.findByPk(req.params.id).then((lobby) => {
+      // If the id is for a valid event, show it
+      res.render('lobby-show', { lobby: lobby })
+    }).catch((err) => {
+      // if they id was for an event not in our db, log an error
+      console.log(err.message);
+    })
+  })
+
+
+
 
 
 // Choose a port to listen on
