@@ -9,12 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "body-parser": "^1.19.0",
     "expres": "0.0.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.0.0",
+    "handlebars": "^4.7.6",
     "pg": "^8.2.2",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.0"
+  },
+  "devDependencies": {
+    "handlebars": "^4.5.0"
   }
 }

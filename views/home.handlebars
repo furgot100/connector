@@ -3,11 +3,11 @@
         <!-- Add the following two lines -->
         <h1>Reviews</h1>
         <a href="/lobby/new">New Lobby</a>
-        {{#each events}}
+        {{#each lobbys}}
             <div class="card mt-3">
             <div class="card-body">
-                <h5 class="card-title">{{this.title}}</h5>
-                <p class="card-text">{{this.desc}}</p>
+                <h5 class="card-title">{{this.dataValues.title}}</h5>
+                <p class="card-text">{{this.dataValues.desc}}</p>
                 <div class="text-right">
                 <a href="#" class="btn btn-info">Rsvp</a>
                 <a href="#" class="btn btn-primary">View</a>
