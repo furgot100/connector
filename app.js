@@ -81,6 +81,16 @@ app.put('/lobby/:id', (req, res) => {
     });
 });
 
+// DELETE
+app.delete('/lobby/:id', (req, res) => {
+    models.Lobby.findByPk(req.params.id).then(lobby => {
+      lobby.destroy();
+      res.redirect(`/`);
+    }).catch((err) => {
+      console.log(err);
+    });
+})
+
 
 
 
