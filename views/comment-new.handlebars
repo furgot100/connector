@@ -1,33 +1,3 @@
-
-<div class="row mt-4">
-    <div class="col-lg-6 offset-lg-3">
-        <h3>{{lobby.title}}</h3>
-        <h5>{{lobby.link}}</h5>
-        <div class="lead">{{lobby.desc}}</div>
-    </div>
-    <div class="text-right">
-        <a href="/lobby/{{lobby.id}}/edit">Edit</a>
-    </div>
-    <div class="col-lg-4 offset-lg-1">
-        <div class="d-flex justify-content-between">
-            <b>Comments ({{lobby.Comments.length}})</b>
-        </div>
-
-        <div class="list-group mt-4">
-            {{#each lobby.Comments}}
-            <div class="list-group-item">
-                <h5>{{this.name}}</h5><br>
-                {{this.desc}}
-            </div>
-            {{/each}}
-        </div>
-    </div>
-</div>
-
-
-
-
-
 <div class="row mt-4">
     <div class="col-lg-6 offset-lg-3">
         <div class="card">
@@ -35,7 +5,7 @@
                 <div class="card-title">
                     <h3>New comment</h3>
                     <div class="lead">
-                        Lobby: {{lobby.title}}
+                        Lobby: {{this.dataValues.title}}
                     </div>
                 </div>
                 <div class="card-text">
