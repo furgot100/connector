@@ -3,6 +3,7 @@
     <div class="col-lg-6 offset-lg-3">
         <h3>{{lobby.title}}</h3>
         <h5>{{lobby.link}}</h5>
+        
         <div class="lead">{{lobby.desc}}</div>
     </div>
     <div class="text-right">
@@ -15,9 +16,16 @@
 
         <div class="list-group mt-4">
             {{#each lobby.Comments}}
-            <div class="list-group-item">
-                <h5>{{this.name}}</h5><br>
-                {{this.desc}}
+            <div class="list-group-item clearfix">
+                <div class="float-left">
+                    <h5>{{this.name}}</h5><br>
+                    {{this.desc}}
+                </div>
+                {{!-- <div class="float-right">
+                    <form class="form-inline" action="/lobby/{{../lobby.id}}/comments/{{this.id}}?_method=DELETE" method="post">
+                    <button type="submit" class="btn btn-link btn-sm">Remove</button>
+                    </form>
+                </div> --}}
             </div>
             {{/each}}
         </div>

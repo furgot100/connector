@@ -16,5 +16,13 @@ module.exports = (app, models) => {
         });
     });
   
-    // DESTROY  
+    // // DELETE
+    // app.delete('/lobby/:lobbyId/comment/:id', (req, res) => {
+    //     models.Comment.findByPk(req.params.id).then(comment => {
+    //         comment.destroy();
+    //         res.redirect(`/lobby/${req.params.lobbyId}`);
+    //     }).catch((err) => {
+    //         console.log(err);
+    //     }); 
+    // });
 }

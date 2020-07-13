@@ -21,3 +21,5 @@ module.exports = {
     return queryInterface.removeColumn('Comments', 'LobbyId');  
   }
 };
+
+// return .remove
