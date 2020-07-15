@@ -16,13 +16,15 @@ module.exports = (app, models) => {
         });
     });
   
-    // // DELETE
-    // app.delete('/lobby/:lobbyId/comment/:id', (req, res) => {
-    //     models.Comment.findByPk(req.params.id).then(comment => {
-    //         comment.destroy();
-    //         res.redirect(`/lobby/${req.params.lobbyId}`);
-    //     }).catch((err) => {
-    //         console.log(err);
-    //     }); 
-    // });
+    // DELETE
+    app.delete('/lobby/:lobbyId/comment/:id', (req, res) => {
+        console.log('DELETING COMMENTS')
+        console.log(req.params.id)
+        models.Comment.findByPk(req.params.id).then(comment => {
+            comment.destroy();
+            res.redirect(`/lobby/${req.params.lobbyId}`);
+        }).catch((err) => {
+            console.log(err);
+        }); 
+    });
 }
