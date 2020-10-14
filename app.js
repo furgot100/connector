@@ -26,6 +26,8 @@ const models = require('./db/models');
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 
+app.use(express.static('public'));
+
 require('./controllers/lobby')(app, models);
 require('./controllers/comment')(app, models);
 
