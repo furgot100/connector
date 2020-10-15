@@ -1,19 +1,21 @@
-<div class="row mt-4">
-    <div class="col-lg-6 offset-lg-3">
-        <!-- Add the following two lines -->
-        <h1>Lobbys</h1>
-        <a href="/lobby/new">New Lobby</a>
-        {{#each lobbys}}
-            <div class="card mt-3">
-            <div class="card-body">
-                <h5 class="card-title">{{this.dataValues.title}}</h5>
-                <p class="card-text">{{this.dataValues.desc}}</p>
-                <p class="card-text">{{this.dataValues.link}}</p>
-                <div class="text-right">
-                <a href="/lobby/{{this.id}}" class="btn btn-primary">View</a>
+<html>
+    <div class="row mt-4">
+        <div class="col-lg-6 offset-lg-3">
+            <!-- Add the following two lines -->
+            <h1>Lobbys</h1>
+            <a href="/lobby/new">New Lobby</a>
+            {{#each lobbys}}
+                <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.dataValues.title}}</h5>
+                    <p class="card-text">{{this.dataValues.desc}}</p>
+                    <p class="card-text">{{this.dataValues.link}}</p>
+                    <div class="text-right">
+                    <a href="/lobby/{{this.id}}" class="btn btn-primary">View</a>
+                    </div>
                 </div>
-            </div>
-            </div>
-        {{/each}}
+                </div>
+            {{/each}}
+        </div>
     </div>
-</div>
+</html>

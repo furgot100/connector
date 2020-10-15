@@ -28,6 +28,7 @@ app.use(methodOverride('_method'))
 
 app.use(express.static('public'));
 
+require('./controllers/auth.js')(app);
 require('./controllers/lobby')(app, models);
 require('./controllers/comment')(app, models);
 
