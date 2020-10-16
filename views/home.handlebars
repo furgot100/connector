@@ -5,15 +5,13 @@
             <h1>Lobbys</h1>
             <a href="/lobby/new">New Lobby</a>
             {{#each lobbys}}
-                <div class="card mt-3">
-                <div class="card-body">
+                <div class="card-body card mt-3">
                     <h5 class="card-title">{{this.dataValues.title}}</h5>
                     <p class="card-text">{{this.dataValues.desc}}</p>
                     <p class="card-text">{{this.dataValues.link}}</p>
                     <div class="text-right">
                     <a href="/lobby/{{this.id}}" class="btn btn-primary">View</a>
                     </div>
-                </div>
                 </div>
             {{/each}}
         </div>

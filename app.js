@@ -32,6 +32,7 @@ const models = require('./db/models');
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 
+// Loads custom css
 app.use(express.static('public'));
 
 // Sets up the Express app to handle data parsing
@@ -50,7 +51,7 @@ require('./controllers/lobby')(app, models);
 require('./controllers/comment')(app, models);
 require('./routes/user')(app, passport);
 
-require('./config/passport/passport.js')(passport, models.User);
+require('./db/config/passport/passport.js')(passport, models.User);
 
 
 
