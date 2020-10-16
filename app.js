@@ -2,7 +2,7 @@
 const express = require('express')
 const methodOverride = require('method-override')
 const app = express()
-const models = require('./db/models');
+const session = require('express-session')
 
 const passport = require('passport')
 const Strategy = require('passport-local').Strategy
@@ -27,44 +27,30 @@ app.set('view engine', 'handlebars');
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const models = require('./db/models');
+const models = require('./db/models');
 
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 
 app.use(express.static('public'));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-passport.use(new Strategy(
-  function(username, password, cb) {
-    models.User.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      return cb(null, user);
-    });
-}))
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
-});
-
-passport.deserializeUser(function(id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
-
+// Passport initialization
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session());
 
 
+// Routes
 require('./controllers/lobby')(app, models);
 require('./controllers/comment')(app, models);
-require('./controllers/user')(app,models);
+require('./routes/user')(app, passport);
+
+require('./config/passport/passport.js')(passport, models.User);
 
 
 
