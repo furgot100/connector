@@ -132,9 +132,9 @@ module.exports = function (passport, auth) {
     
 
     // deserialize user 
-    passport.deserializeUser(function (id, done) {
+    passport.deserializeUser(function (email, done) {
 
-        User.findById(id).then(function (user) {
+        User.findById(email).then(function (user) {
 
             if (user) {
 

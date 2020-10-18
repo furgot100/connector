@@ -27,7 +27,7 @@ module.exports = function (app, passport) {
 
     app.post("/login/user",passport.authenticate('local-signin'), (req,res) => {
         console.log(req.user);
-        res.render('homepage');
+        res.render('home');
    });
 
    function isLoggedIn (req, res, next){
